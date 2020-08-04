@@ -1,31 +1,12 @@
-# deepl-cli
+# PyDeepL translate
 
-[![PyPI version](https://badge.fury.io/py/deepl-cli.svg)](https://badge.fury.io/py/deepl-cli) [![Maintainability](https://api.codeclimate.com/v1/badges/a56630914df8538ca93b/maintainability)](https://codeclimate.com/github/eggplants/deepl-cli/maintainability) [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
+This is a python package for translating using DeepL. The package uses a web driver to communicate with the page https://deepl.com/translator.
+The package is essentially a rewriting of Haruna (eggplants)'s package deepl-cli. I follow roughly the same structure as [py-googletrans](https://github.com/ssut/py-googletrans) package which translate by interacting with Google Translate's AJAX API.
 
-[![Downloads](https://pepy.tech/badge/deepl-cli)](https://pepy.tech/project/deepl-cli) [![Downloads](https://pepy.tech/badge/deepl-cli/month)](https://pepy.tech/project/deepl-cli/month) [![Downloads](https://pepy.tech/badge/deepl-cli/week)](https://pepy.tech/project/deepl-cli/week)
+## DeepL API
+It was previously possible to make calls to DeepL API via the url https://www.deepl.com/jsonrpc but DeepL have it shut down. Package like https://github.com/freundTech/deepl-cli/ using this url cannot be used anymore.
 
-- [DeepL Translator](https://www.deepl.com/translator) CLI using Selenium
-- Translate standard input into a specified language
-- Under development on Ubuntu 20.04 LTS and Python3.8
-
-## Try on Google Cloud Shell
-
-[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/eggplants/deepl-cli&tutorial=README.md&shellonly=true)
-
-```bash
-# First,
-$ wget -O - https://raw.githubusercontent.com/eggplants/deepl-cli/master/deeplcli_setup.sh | bash
-# example
-$ deepl en:ja < README-cloudshell.txt
-```
-
-## Install
-
-```bash
-$ wget -O - https://raw.githubusercontent.com/eggplants/deepl-cli/master/deeplcli_setup.sh | bash
-```
-
-![demo](https://i.imgur.com/mGbwqO7.png)
+This package provides a way to translate text using DeepL's freely available web translator. Yet if you care about performance, I strongly advise you to take a subscription and use DeepL official API. You can consider this package as a way to test DeepL's translation quality.
 
 ## Requirements
 
@@ -37,32 +18,11 @@ $ wget -O - https://raw.githubusercontent.com/eggplants/deepl-cli/master/deeplcl
 
 ## Usage
 
-```bash
-$ deepl
-SYNTAX:
-    $ ... | deepl <from:lang>:<to:lang>
-    $ deepl <from:lang>:<to:lang> <<'EOS'
-      ...
-      EOS
-    $ deepl <from:lang>:<to:lang> <<<"..."
-    $ deepl <from:lang>:<to:lang> < <filepath>
-USAGE:
-    $ echo Hello | deepl en:ja
-    $ deepl :ru <<'EOS' # :ru is equivalent of auto:ru
-      good morning!
-      good night.
-      EOS
-    $ deepl fr:zh <<<"Mademoiselle"
-    $ deepl de:pl < README_de.md
-LANGUAGE CODES:
-    <from:lang>: {(empty)=auto, ja, en, de, fr, es, pt, it, nl, pl, ru, zh}
-    <to:lang>:   {ja, en, de, fr, es, pt, it, nl, pl, ru, zh}
-TIPS:
-    To use this, run:
-    $ sudo apt install chromium-browser chromium-chromedriver python3-selenium -y
-    $ sudo apt update && sudo apt -f install -y
-    Or:
-    $ wget -O - https://raw.githubusercontent.com/eggplants/deepl-cli/master/deeplcli_setup.sh | bash
+```
+from deepl.client import Translator
+t = Translator()
+translator.change_lang(fr="en", to="jp")
+translator.translate("Hello")
 ```
 
 ## Lisence
@@ -70,5 +30,6 @@ TIPS:
 MIT
 
 ## Author
+Adam Oudad.
 
-Haruna(eggplants)
+This is based on deep-cli by Haruna(eggplants). I am rewriting the original code to follow [py-googletrans](https://github.com/ssut/py-googletrans) package structure to be used as a python module.

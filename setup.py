@@ -1,13 +1,13 @@
 from setuptools import setup, find_packages
 setup(
-    name='deepl-cli',
+    name='py-deepl-translate',
     version='0.0.7',
-    description='DeepL Translator CLI using Selenium',
+    description='DeepL Translator using Selenium',
     description_content_type='',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
-    url='https://github.com/eggplants/deepl-cli',
-    author='eggplants',
+    url='https://github.com/adamoudad/py-deepl-translate',
+    author='adamoudad',
     packages=find_packages(),
     python_requires='>=3.8',
     include_package_data=True,
